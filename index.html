@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+    <main>
+        <ul id="nome-loja">
+            <h2>Dou & Nat</h2>
+            <h2> Listinha de Compras </h2>
+        </ul>
+        <img class="imagem" src="imagens/1000209842.jpg" width="300" alt="imagem">
+        <form>
+            <input class="input-item" id="input-item" type="text" placeholder="Oque vamos adicionar a Lista?" autocomplete="off">
+            <button class="button-item" id="add-item" type="button">Adicionar Item</button>
+        </form>
+        <div class="titulo-container-lista">
+            <img src="/imagens/Carrinho vazio.png" class="icon" width="25px" alt="Carrinho">
+            <h2>Items Adicionados</h2>
+        </div>
+        <div class="container-lista">
+            <ul id="lista-de-compras">
+                <hr>
+                <p class="mensagem-vazia">Não ha nenhum item nessa Lista :( </p>
+            </ul>
+        </div>
+    </main>
+    <script type="module" src="index.js"></script>
+</body>
+
+</html>
