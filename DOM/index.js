@@ -15,3 +15,10 @@ addbutton.addEventListener("click", (evento) => { //fofoqueiro que vê quando vc
     inputItem.value = "";
 }); //limpa o campo input apos clique
 
+inputItem.addEventListener("keydown", (evento) => {
+    if (evento.key === "Enter") {
+        evento.preventDefault(); // Evita o comportamento padrão do Enter (como recarregar a página)
+        addbutton.click(); // Simula o clique no botão "Adicionar Item"
+    }
+});
+

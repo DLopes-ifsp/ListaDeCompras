@@ -17,39 +17,83 @@ export function criaritem() {
     const itemlista = document.createElement("li"); // cria uma list item para representar cada item
     const containeritemlista = document.createElement("div"); //cria uma div para container do item
     containeritemlista.classList.add("item-lista-container"); //vincula ao css para poder estilizar a lista
-    const nomeitem = document.createElement("p"); //cria o p para nomear o item
-    const checkbox = document.createElement("input");//cria o checkbox pra cada item da lista
-    checkbox.type = "checkbox"; //define o input como checkbox
-    checkbox.id = "checkbox-" + contador++;//determina o id do checkbox
-    containeritemlista.appendChild(checkbox)//inclui o checkbox no container
+
+    const nomeitem = document.createElement("p");
+    nomeitem.innerText = inputItem.value; // Define o texto do item
+    nomeitem.classList.add("nome-item"); // Adiciona uma classe para estilização, se necessário
+    containeritemlista.appendChild(nomeitem); // Adiciona o texto ao contêiner como o primeiro elemento
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.id = "checkbox-" + contador++;
+    containeritemlista.appendChild(checkbox); // Adiciona o checkbox ao contêiner
+
     checkbox.addEventListener("click", function () {
         if (checkbox.checked) {
-            nomeitem.style.textDecoration = "line-through"; //risca o texto
+            nomeitem.style.textDecoration = "line-through"; // Risca o texto
+            listadecompras.appendChild(itemlista); // Move o item para o final da lista
         } else {
-            nomeitem.style.textDecoration = "none"; //remove o risco do texto
+            nomeitem.style.textDecoration = "none"; // Remove o risco do texto
+        }
+    });
+
+    const botaoEditar = document.createElement("button");
+    botaoEditar.classList.add = "editar";
+    const iconeEditar = document.createElement("i");
+    iconeEditar.className = "bi bi-pencil";
+    botaoEditar.appendChild(iconeEditar);
+    botaoEditar.style.cursor = "pointer";
+    containeritemlista.appendChild(botaoEditar);
+    botaoEditar.appendChild(iconeEditar);
+
+    botaoEditar.addEventListener("click", function () {
+        // Oculta o botão de edição
+        botaoEditar.style.display = "none";
+
+        // Cria um campo de entrada para edição
+        const inputEdicao = document.createElement("input");
+        inputEdicao.type = "text";
+        inputEdicao.value = nomeitem.innerText; // Preenche com o texto atual
+        inputEdicao.classList.add("input-edicao"); // Adicione uma classe para estilização, se necessário
+
+        // Substitui o texto pelo campo de entrada
+        containeritemlista.replaceChild(inputEdicao, nomeitem);
+
+        // Foca no campo de entrada
+        inputEdicao.focus();
+
+        // Salva a edição ao perder o foco ou pressionar Enter
+        inputEdicao.addEventListener("blur", () => salvarEdicao(inputEdicao));
+        inputEdicao.addEventListener("keydown", (evento) => {
+            if (evento.key === "Enter") {
+                salvarEdicao(inputEdicao);
+            }
+        });
+
+        function salvarEdicao(input) {
+            const novoTexto = input.value.trim();
+            if (novoTexto !== "") {
+                nomeitem.innerText = novoTexto; // Atualiza o texto
+            }
+            // Substitui o campo de entrada pelo texto atualizado
+            containeritemlista.replaceChild(nomeitem, input);
+
+            // Mostra o botão de edição novamente
+            botaoEditar.style.display = "inline-block";
         }
     });
 
     const botao = document.createElement("button");
-    botao.classList.add = "excluir"
-    const iconeExcluir = document.createElement("i");
-    iconeExcluir.className = "bi bi-trash";
-    botao.appendChild(iconeExcluir);
-    botao.style.cursor = "pointer"; 
-    containeritemlista.appendChild(botao);
-    botao.appendChild(iconeExcluir);
+    botao.classList.add("botao-excluir");
+    botao.textContent = "X";
+    botao.style.cursor = "pointer";
+    containeritemlista.appendChild(botao); // Adiciona o botão ao contêiner
 
-    botao.addEventListener("click", function (){
-        const confirmacao = confirm("Deseja realment deletar esse item?");
-        if(confirmacao){
-            itemlista.remove();
-            alert("item deletado");
-            verificarlistavazia(listadecompras);
-        }
+    botao.addEventListener("click", function () {
+        itemlista.remove(); // Remove o item diretamente
+        verificarlistavazia(listadecompras); // Verifica se a lista está vazia
     });
 
-    nomeitem.innerText = inputItem.value; //usuario nomeia o item 
-    containeritemlista.appendChild(nomeitem); //adiciona o <p> dentro da <div>
     itemlista.appendChild(containeritemlista); // adiciona a <div> dentro da <li>
     
     const datacompleta = gerardia();

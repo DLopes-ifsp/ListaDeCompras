@@ -99,8 +99,15 @@ p {
     font-weight: 400;
     line-height: 24px;
     border: none;
+    transition: all 0.3s ease; /* Adiciona uma transição suave */
+    cursor: pointer;
 }
 
+.button-item:hover {
+    background-color: var(--cor-primaria); /* Muda a cor de fundo ao passar o mouse */
+    transform: scale(1.1); /* Aumenta o tamanho do botão */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.911); /* Adiciona uma sombra */
+}
 
 form {
     display: flex;
@@ -111,23 +118,39 @@ form {
 
 
 .item-lista-container {
-  position: relative;
   display: flex;
-  align-items: center;
-  padding-right: 0px; /* espaço reservado para o botão */
-  gap: 8px;
+  justify-content: space-between; /* Espaço entre o texto e os botões */
+  align-items: center; /* Alinha verticalmente os itens */
+  width: 100%; /* Garante que o contêiner ocupe toda a largura */
+  padding: 8px; /* Espaçamento interno */
+  gap: 8px; /* Espaçamento entre os itens */
 }
 
+.item-lista-container p {
+  flex-grow: 1; /* Faz o texto ocupar o espaço disponível */
+  text-align: left; /* Alinha o texto à esquerda */
+  margin: 0; /* Remove margens padrão */
+}
+
+.item-lista-container button {
+  margin-left: 8px; /* Espaçamento entre os botões */
+}
 
 .botao-excluir {
-  position: absolute;
-  right: 10px;
-  background: transparent;
-  border: none;
-  color: #dc3545;
-  font-size: 1.2rem;
+  background: transparent; /* Fundo transparente */
+  border: none; /* Remove a borda */
+  color: #dc3545; /* Vermelho */
+  font-size: 1rem; /* Tamanho da fonte pequeno */
+  font-weight: bold; /* Deixa o "X" em negrito */
+  cursor: pointer; /* Mostra o cursor de ponteiro ao passar o mouse */
+  padding: 0; /* Remove o preenchimento interno */
+  margin-left: 8px; /* Espaçamento à esquerda */
 }
 
+.botao-excluir:hover {
+  color: #ff0000; /* Torna o "X" mais brilhante ao passar o mouse */
+  transform: scale(1.2); /* Aumenta ligeiramente o tamanho ao passar o mouse */
+}
 
 x ul {
     list-style-type: none;
